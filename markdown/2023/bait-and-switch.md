@@ -8,29 +8,23 @@ Don't believe it? <https://whatismyipaddress.com/>
 But when we send this image into a Discord server, we get this:  
 ![Discord Image](https://xsfs.xyz/assets/img/2023/discord-bait.png)
 
-Did you know? Web servers don't have to serve static images, as long as they return the data with a specified MIME type the browser will render this. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
+### How does this work?
 
-## Warning
+Well, you can read the code [here](https://github.com/the-wright-jamie/Image-Troll-Server) and see for yourself, but the code doesn't reveal the full story - so keep reading to learn more about this.
 
-This software has been created for **educational and recreational purposes ONLY** - i.e. for a bit of craic with my friends. Under no circumstances should this code be modified for malicious intent.
+Basically, however, web servers don't have to serve static images, as long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
 
-## Image Troll Server
+### What is the intended path for the victim?
 
-### What is this?
-
-A NodeJS http server that will capture a user's IP and then present it back to them. It is written in TypeScript for no particular reason other than I was working on similar Express server code for another project which I borrowed for this and didn't feel like rewriting it in JavaScript.
-
-It's also not very well written code. Not my best work, I must say, but who creates the cleanest code for the lowest gag
-
-### What does it do?
-
-Designed primarily for trolling on Discord, in it's current state it will display some (not very good) bait to get the user to click "Open in Browser" and then display their IP address to them.
+Due to the way Discord works, we need to present some bait to the user to get them to click "Open in browser" which will then display their IP address to them
 
 ### Why do we need to use bait?
 
-To understand why we need bait, we need to understand how Discord handles images. Here is the basic process for how an image is displayed to a user in Discord:
+You may be thinking the reason we need to use bait is to get around moderators in servers immediately deleting the images, but actually it's a little more complicated that that. TL;DR, Discord presents a cached version of the image to the user.
 
-1. A user sends an image
+The long answer: to understand why we need bait, we need to understand how Discord handles images. Here is the basic process for how an image is displayed to a user in Discord:
+
+1. A user sends the link to the image
 2. A Discord crawler crawls the link to see what it is (`crawl-{crawler-ip-address}.ptr.discord.com`)
 3. The crawler sees that it's an image, and hands off to the caching server (`{undetermined-ip-address}.bc.googleusercontent.com`)
 4. The caching server reads the image
@@ -39,9 +33,9 @@ To understand why we need bait, we need to understand how Discord handles images
 
 Hopefully you can see where the issue is coming in here: step 5.
 
-If the caching server retrieves the image on the user's behalf, the IP address that's going to get displayed is the caching server's IP and not the target's IP address. This kills the punchline 🫤.
+If the caching server retrieves the image on the user's behalf, the IP address that's going to get displayed is the caching server's IP and not the target's IP address and as a result killing the punchline 🫤
 
-So, instead, we need to detect if a datacenter is caching our image and if it is, give the datacenter the bait to display instead as this is what will be displayed to the user in Discord. The end goal is to get the user to click "Open in Browser" in Discord, so that it will take them there and the browser will access the server directly so we can lift the user's actual IP address.
+So, instead, we need to detect if a data center is caching our image and if it is, give the data center the bait to display instead as this is what will be displayed to the user in Discord. And remember, as a result of this, the end goal is to get the user to click "Open in Browser" in Discord, so that it will take them there and the browser will access the server directly so we can lift the user's actual IP address.
 
 It's anyone's guess why Discord does it like this. However, we could probably relate it back to the Information Security CIA Triad:
 
