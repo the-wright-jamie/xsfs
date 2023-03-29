@@ -7,29 +7,12 @@
    viewBox="0 0 107.40734 107.40734"
    version="1.1"
    id="svg5"
-   inkscape:export-filename="bitmap.svg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#000000"
-     bordercolor="#000000"
-     borderopacity="0"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false" />
   <defs
      id="defs2">
     <linearGradient
-       inkscape:collect="always"
        id="linearGradient3777">
       <stop
          style="stop-color:#4aaf37;stop-opacity:1;"
@@ -41,15 +24,13 @@
          id="stop3775" />
     </linearGradient>
     <linearGradient
-       id="linearGradient3730"
-       inkscape:swatch="solid">
+       id="linearGradient3730">
       <stop
          style="stop-color:#4aaf37;stop-opacity:1;"
          offset="0"
          id="stop3728" />
     </linearGradient>
     <filter
-       inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
        id="filter3719"
        x="-0.00025083465"
@@ -57,12 +38,10 @@
        width="1.0005018"
        height="1.0005018">
       <feGaussianBlur
-         inkscape:collect="always"
          stdDeviation="0.011219989"
          id="feGaussianBlur3721" />
     </filter>
     <radialGradient
-       inkscape:collect="always"
        xlink:href="#linearGradient3777"
        id="radialGradient3779"
        cx="102.78165"
@@ -73,8 +52,6 @@
        gradientUnits="userSpaceOnUse" />
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-49.07798,-5.0528908)">
     <circle
@@ -83,16 +60,9 @@
        cx="102.78165"
        cy="58.756557"
        r="53.676739" />
-    <text
-       xml:space="preserve"
-       style="font-size:3.175px;fill:#4aaf37;fill-opacity:1;stroke:#000000;stroke-width:0.965;stroke-dasharray:none;stroke-opacity:1"
-       x="66.376282"
-       y="93.12999"
-       id="text113"><tspan
-         sodipodi:role="line"
-         id="tspan111"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:90.3111px;font-family:'Libre Baskerville';-inkscape-font-specification:'Libre Baskerville, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#4aaf37;fill-opacity:1;stroke:#000000;stroke-width:0.965;stroke-dasharray:none;stroke-opacity:1"
-         x="66.376282"
-         y="93.12999">X</tspan></text>
+    <path
+       d="m 129.14249,83.28608 q 4.69618,6.412088 11.46951,6.412088 v 3.431822 h -30.79608 v -3.431822 q 4.064,0 5.50898,-0.722489 1.53528,-0.8128 1.53528,-2.167466 0,-0.632178 -0.18062,-1.264355 -0.0903,-0.722489 -0.63218,-1.715911 -0.45155,-0.993422 -1.35466,-2.4384 -0.90311,-1.444977 -2.4384,-3.793066 l -10.29547,-15.352886 -7.766751,9.753598 q -2.799644,3.522133 -4.696177,6.050844 -1.896533,2.52871 -3.070577,4.334932 -1.083733,1.806222 -1.6256,2.980266 -0.451555,1.174045 -0.451555,1.986844 0,1.354667 1.535289,1.896533 1.535288,0.451556 5.77991,0.451556 V 93.12999 H 66.556904 v -3.431822 q 2.167466,0 3.883377,-0.451556 1.806222,-0.451555 3.522133,-1.444977 1.715911,-1.083733 3.431821,-2.799644 1.806222,-1.806222 3.883378,-4.425244 L 98.978587,57.998973 80.645435,32.9828 Q 78.387658,29.821911 75.588014,28.467245 72.78837,27.022267 68.904992,27.022267 v -3.431821 h 29.983284 v 3.431821 q -5.870221,0 -5.870221,3.522133 0,2.257777 2.528711,5.960532 l 9.843914,14.630398 8.85048,-11.198576 q 2.52871,-3.160888 3.52214,-5.147733 0.99342,-1.986844 0.99342,-3.793066 0,-2.257777 -1.53529,-3.070577 -1.44498,-0.903111 -5.23804,-0.903111 v -3.431821 h 24.83555 v 3.431821 q -2.16747,0 -3.79307,0.361245 -1.53529,0.270933 -2.98027,1.264355 -1.44497,0.993422 -3.16088,2.889955 -1.71591,1.896533 -4.15431,5.057421 l -14.35947,18.513775 z"
+       style="font-size:90.3111px;font-family:'Libre Baskerville';-inkscape-font-specification:'Libre Baskerville, Normal';fill:#4aaf37;stroke:#000000;stroke-width:0.965"
+       id="path694" />
   </g>
 </svg>
