@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link href="assets/img/icon.svg" rel="icon" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Share+Tech+Mono"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+  </head>
+  <body
+    onload="const urlParams = new URLSearchParams(window.location.search);
+ render(urlParams.get('title'), urlParams.get('year'))"
+  >
+    <div class="container">
+      <br />
+      <a href="/"><img class="brand" src="assets/img/icon.svg" /></a>
+      <br />
+      <div id="target">Article loading...</div>
+      <script id="article" type="x-tmpl-mustache">
+        {{{ article }}}
+      </script>
+      <div id="footer-target">Footer loading...</div>
+      <script id="footer" type="x-tmpl-mustache">
+        {{{ footer }}}
+      </script>
+      <script src="assets/js/mustache.js"></script>
+      <script src="assets/js/generic-render.js"></script>
+    </div>
+  </body>
+</html>

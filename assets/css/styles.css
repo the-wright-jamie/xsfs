@@ -1,0 +1,63 @@
+body {
+  font-family: "Share Tech Mono";
+  background: #121212;
+  color: white;
+}
+
+h1::before {
+  content: "# ";
+}
+
+h1 {
+  color: #4aaf37;
+  text-shadow: 0 0 15px green;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: gray;
+}
+
+/* mouse over link */
+a:hover {
+  color: #4aaf37;
+  text-shadow: 0 0 15px #4aaf37;
+}
+
+/* selected link */
+a:active {
+  color: green;
+  text-shadow: 0 0 15px green;
+}
+
+.brand {
+  max-width: 5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p,
+ol,
+ul {
+  font-size: 1.25em;
+}
+
+code {
+  padding-top: 0.25%;
+  padding-bottom: 0.25%;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  border-radius: 0.35em;
+  background-color: #333333;
+  color: white;
+}
+
+img {
+  max-height: 15em;
+}
