@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>XSFS / Article</title>
+    <title>XSFS / Error</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -26,16 +26,16 @@
       <br />
       <a href="/"><img class="brand" src="assets/img/icon.svg" /></a>
       <br />
-      <div id="target">Article loading...</div>
-      <script id="article" type="x-tmpl-mustache">
+      <div id="target">
+        <div class="spinner-border text-success center" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <script id="template" type="x-tmpl-mustache">
         {{{ article }}}
       </script>
-      <div id="footer-target">Footer loading...</div>
-      <script id="footer" type="x-tmpl-mustache">
-        {{{ footer }}}
-      </script>
       <script src="assets/js/mustache.js"></script>
-      <script src="assets/js/generic-render.js"></script>
+      <script src="assets/js/error-render.js"></script>
     </div>
   </body>
 </html>

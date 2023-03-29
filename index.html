@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>XSFX / Home Page</title>
+    <title>XSFS / Home Page</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -18,7 +18,7 @@
     />
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
   </head>
-  <body>
+  <body onload="render()">
     <div class="container">
       <br />
       <a href="/"><img class="brand" src="assets/img/icon.svg" /></a>
@@ -27,33 +27,74 @@
       <p>
         v1.0.0<br />
         eXtra Space For Stuff<br />
-        A place for demonstations, thoughts and whatever else
+        A place for demonstrations, thoughts and whatever else
       </p>
       <p>Run by <a href="https://the-wright-jamie.dev">the-wright-jamie</a></p>
       <h1>ls ./demos</h1>
-      <div class="row">
-        <div class="col-lg-3">
-          <a href="article?title=bait-and-switch&year=2023"
-            >Discord Bait & Switch</a
-          >
-        </div>
-        <div class="col-lg-3">
-          <a href="article?title=stealing-cookies&year=2023"
-            >Stealing Cookies</a
-          >
-        </div>
-        <div class="col-lg-3">
-          <a href="article?title=queries-vs-prepared-statements&year=2023"
-            >Queries vs Prepared Statements (ft. Postgres)</a
-          >
+      <div id="demos-target">
+        <div class="spinner-border text-success center" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <br />
+      <script id="demos-template" type="x-tmpl-mustache">
+        {{#demos}}
+          {{#years}}
+            <h2>{{year}}</h2>
+            <div class="row">
+              {{#articles}}
+                <div class="col">
+                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                </div>
+              {{/articles}}
+            </div>
+            <br />
+          {{/years}}
+        {{/demos}}
+      </script>
       <h1>ls ./thoughts</h1>
-      <p>Head empty, no thoughts</p>
-      <br />
+      <div id="thoughts-target">
+        <div class="spinner-border text-success center" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <script id="thoughts-template" type="x-tmpl-mustache">
+        {{#thoughts}}
+          {{#years}}
+            <h2>{{year}}</h2>
+            <div class="row">
+              {{#articles}}
+                <div class="col">
+                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                </div>
+              {{/articles}}
+            </div>
+            <br />
+          {{/years}}
+        {{/thoughts}}
+      </script>
       <h1>ls ./misc</h1>
-      <p>Nothing to see here, yet... 😛</p>
+      <div id="misc-target">
+        <div class="spinner-border text-success center" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <script id="misc-template" type="x-tmpl-mustache">
+        {{#misc}}
+          {{#years}}
+            <h2>{{year}}</h2>
+            <div class="row">
+              {{#articles}}
+                <div class="col">
+                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                </div>
+              {{/articles}}
+            </div>
+            <br />
+          {{/years}}
+        {{/misc}}
+      </script>
     </div>
+    <script src="assets/js/mustache.js"></script>
+    <script src="assets/js/menu-render.js"></script>
   </body>
 </html>

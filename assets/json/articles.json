@@ -1,0 +1,33 @@
+{
+  "demos": {
+    "years": [
+      {
+        "year": "2023",
+        "articles": [
+          {
+            "link": "query-vs-prepared",
+            "title": "Queries vs Prepared Statements (ft. Postgres)"
+          },
+          { "link": "stealing-cookies", "title": "Stealing Cookies" },
+          { "link": "bait-and-switch", "title": "Discord Bait & Switch Troll" }
+        ]
+      }
+    ]
+  },
+  "thoughts": {
+    "years": [
+      {
+        "year": "2023",
+        "articles": [{ "link": "", "title": "Head empty, no thoughts" }]
+      }
+    ]
+  },
+  "misc": {
+    "years": [
+      {
+        "year": "2023",
+        "articles": [{ "link": "", "title": "Nothing to see here, yet" }]
+      }
+    ]
+  }
+}
