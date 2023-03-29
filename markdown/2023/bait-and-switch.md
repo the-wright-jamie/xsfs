@@ -47,6 +47,8 @@ TODO: Create a diagram. Do you see this message? Get in touch with the creator o
 
 It's anyone's guess why Discord does it like this. However, we could probably relate it back to the Information Security CIA Triad:
 
+![CIA Triad](https://xsfs.xyz/assets/img/cia-triad.svg)
+
 1. **Confidentiality**: Preventing people like me from doing something like this easily as someone could easily collect a large amount of real user IP addresses this way if there was no cache/proxy and no one could really stop us
 2. **Integrity**: make sure it doesn't change - it's the same as when it was posted (although this doesn't entirely line up as the image is cached when it's loaded on the clients side and not when the actor posts it, it also occasionally updates it's cache too)
 3. **Availability**: Imagine the image linked to a small server in someone's attic and it got posted in a large server. The image being posted there and that many users accessing the image at once with Discord open in the background could simply DDOS the host. Or simply, the original endpoint's server may have slow internet
@@ -54,10 +56,10 @@ It's anyone's guess why Discord does it like this. However, we could probably re
 Probably some other reasons like:
 
 4. Scanning the image for malicious content (malware, content that is against the TOS/Guidelines)
-5. Reducing their bandwidith impact on the host (related to point 3)
+5. Reducing their bandwidth impact on the host (related to point 3)
 
 Additionally, nowadays it's a lot harder to pull this off due to this pop-up:
-![Discord showing a warning about the true URL of the image that was posted](https://xsfs.xyz/assets/2023/discord-warning.png)
+![Discord showing a warning about the true URL of the image that was posted](https://xsfs.xyz/assets/img/2023/discord-warning.png)
 
 Especially considering the URL where this 'resource' is store, it's very on the nose and as a normal user seeing this you may think twice about opening the image in browser. I don't know if companies have been going this 'zero trust' route of external resources because of genuine concern for user safety or because they are just trying to mitigate user error (as it could be bad press if Discord doesn't do enough to protect it's users from themselves).
 
@@ -65,3 +67,4 @@ Especially considering the URL where this 'resource' is store, it's very on the 
 
 - For end users: always be careful opening and downloading anything. You would be very surprised how easy it is to obfuscate things. Computers are getting better at protecting you from yourself, much to the dismay of power users who very much want their computers to get out of the way.
 - For developers:
+  TODO: This. See this message? Let the creator of the article know.
