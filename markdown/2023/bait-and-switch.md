@@ -61,7 +61,7 @@ Probably some other reasons like:
 Additionally, nowadays it's a lot harder to pull this off due to this pop-up:
 ![Discord showing a warning about the true URL of the image that was posted](https://xsfs.xyz/assets/img/2023/discord-warning.png)
 
-Especially considering the URL where this 'resource' is store, it's very on the nose and as a normal user seeing this you may think twice about opening the image in browser. I don't know if companies have been going this 'zero trust' route of external resources because of genuine concern for user safety or because they are just trying to mitigate user error (as it could be bad press if Discord doesn't do enough to protect it's users from themselves).
+Especially considering the URL where this 'resource' is stored, it's very on the nose and as a normal user seeing this you may think twice about opening the image in browser. I don't know if companies have been going this 'zero trust' route of external resources because of genuine concern for user safety or because they are just trying to mitigate user error (as it could be bad press if Discord doesn't do enough to protect it's users from themselves).
 
 ## What are the takeaways from this?
 
