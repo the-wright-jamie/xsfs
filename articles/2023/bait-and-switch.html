@@ -1,51 +1,119 @@
-<h1 id="bait-and-switching-discord-users">Bait and Switching Discord Users</h1>
-<p>Written by <a href="https://the-wright-jamie.dev/">the-wright-jamie</a> on 29th March 2023</p>
+<h1 id="bait-and-switching-discord-users">Bait and Switching Discord
+Users</h1>
+<p>Written by <a
+href="https://the-wright-jamie.dev/">the-wright-jamie</a> on 29th March
+2023</p>
 <h2 id="introduction">Introduction</h2>
-<p>The following is a real image which is being retrieved from an external server:<br />
-<img src="https://troll.the-wright-jamie.dev/troll.png" alt="You’ve been trolled!" /><br />
-Don’t believe that this is your your real IP address? <a href="https://whatismyipaddress.com/" class="uri">https://whatismyipaddress.com/</a><br />
-Of course, if you’re using a VPN, this won’t be your IP address but an IP address belonging to the VPN</p>
+<p>The following is a real image which is being retrieved from an
+external server:<br />
+<img src="https://troll.the-wright-jamie.dev/troll.png"
+alt="You’ve been trolled!" /><br />
+Don’t believe that this is your real IP address? <a
+href="https://whatismyipaddress.com/"
+class="uri">https://whatismyipaddress.com/</a><br />
+Of course, if you’re using a VPN, this won’t be your IP address but an
+IP address belonging to the VPN</p>
 <p>But when we send this image into a Discord server, we get this:<br />
-<img src="https://xsfs.xyz/assets/img/2023/discord-bait.png" alt="Discord Image" /></p>
+<img src="https://xsfs.xyz/assets/img/2023/discord-bait.png"
+alt="Discord Image" /></p>
 <h2 id="how-does-this-work">How does this work?</h2>
-<p>Well, you can read the code <a href="https://github.com/the-wright-jamie/Image-Troll-Server">here</a> and see for yourself, but the code doesn’t reveal the full story - so keep reading to learn more about this.</p>
-<p>Basically, however, web servers don’t have to serve static images, as long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.</p>
-<h2 id="what-is-the-intended-path-for-the-victim">What is the intended path for the victim?</h2>
-<p>Due to the way Discord works, we need to present some bait to the user to get them to click “Open in browser” which will then display their IP address to them</p>
+<p>Well, you can read the code <a
+href="https://github.com/the-wright-jamie/Image-Troll-Server">here</a>
+and see for yourself, but the code doesn’t reveal the full story - so
+keep reading to learn more about this.</p>
+<p>However, web servers don’t have to serve static images, as long as
+they return the data with a specified MIME type the browser (or
+application, i.e. in this case Discord) will be able to render whatever
+it was that was sent to it. That means we can use simple web server
+frameworks, like NodeJS + Express, to interpret a request; modify an
+image; and then return the data the client is expecting.</p>
+<h2 id="what-is-the-intended-path-for-the-victim">What is the intended
+path for the victim?</h2>
+<p>Due to the way Discord works, we need to present some bait to the
+user to get them to click “Open in browser” which will then display
+their IP address to them</p>
 <h2 id="why-do-we-need-to-use-bait">Why do we need to use bait?</h2>
-<p>You may be thinking the reason we need to use bait is to get around moderators in servers immediately deleting the images, but actually it’s a little more complicated that that. TL;DR, Discord presents a cached version of the image to the user.</p>
-<p>The long answer: to understand why we need bait, we need to understand how Discord handles images. Here is the basic process for how an image is displayed to a user in Discord:</p>
+<p>You may be thinking the reason we need to use bait is to get around
+moderators in servers immediately deleting the images, but actually,
+it’s a little more complicated than that. TL;DR, Discord presents a
+cached version of the image to the user.</p>
+<p>The long answer: to understand why we need bait, we need to
+understand how Discord handles images. Here is the basic process for how
+an image is displayed to a user in Discord:</p>
 <ol type="1">
 <li>A user sends the link to the image</li>
-<li>A Discord crawler crawls the link to see what it is (<code>crawl-{crawler-ip-address}.ptr.discord.com</code>)</li>
-<li>The crawler sees that it’s an image, and hands off to the caching server (<code>{undetermined-ip-address}.bc.googleusercontent.com</code>)</li>
+<li>A Discord crawler crawls the link to see what it is
+(<code>crawl-{crawler-ip-address}.ptr.discord.com</code>)</li>
+<li>The crawler sees that it’s an image, and hands it off to the caching
+server
+(<code>{undetermined-ip-address}.bc.googleusercontent.com</code>)</li>
 <li>The caching server reads the image</li>
-<li>The image is saved in the background in chat as linking to something like <code>https://images-ext-1.discordapp.net/external/{some-encoding}/{link-to-original-image}</code></li>
-<li>That replacement cache link is what is actually displayed to the user</li>
+<li>The image is saved in the background in chat as linking to something
+like
+<code>https://images-ext-1.discordapp.net/external/{some-encoding}/{link-to-original-image}</code></li>
+<li>That replacement cache link is what is displayed to the user</li>
 </ol>
-<p>Hopefully you can see where the issue is coming in here: step 5.</p>
-<p>If the caching server retrieves the image on the user’s behalf, the IP address that’s going to get displayed is the caching server’s IP and not the target’s IP address and as a result killing the punchline 🫤</p>
-<p>So, instead, we need to detect if a data center is accessing our image and if it is, give the data center the bait to display instead as this is what will be displayed to the user in Discord. And remember, as a result of this, the end goal is to get the user to click “Open in Browser” in Discord, so that it will take them there and the browser will access the server directly so we can lift the user’s actual IP address.</p>
-<p>TODO: Create a diagram. Do you see this message? Get in touch with the creator of the article.</p>
+<p>Hopefully, you can see where the issue is coming from here: step
+5.</p>
+<p>If the caching server retrieves the image on the user’s behalf, the
+IP address that’s going to get displayed is the caching server’s IP and
+not the target’s IP address and as a result killing the punchline 🫤</p>
+<p>So, instead, we need to detect if a data centre is accessing our
+image and if it is, give the data centre the bait to display instead as
+this is what will be displayed to the user in Discord. And remember, as
+a result of this, the end goal is to get the user to click “Open in
+Browser” in Discord so that it will take them there and the browser will
+access the server directly so we can lift the user’s actual IP
+address.</p>
+<p>TODO: Create a diagram. Do you see this message? Get in touch with
+the creator of the article.</p>
 <h2 id="why-is-discord-like-this">Why is Discord like this?</h2>
-<p>It’s anyone’s guess why Discord does it like this. However, we could probably relate it back to the Information Security CIA Triad:</p>
+<p>It’s anyone’s guess why Discord does it like this. However, we could
+probably relate it to the Information Security CIA Triad:</p>
 <figure>
-<img src="https://xsfs.xyz/assets/img/cia-triad.svg" alt="" /><figcaption>CIA Triad</figcaption>
+<img src="https://xsfs.xyz/assets/img/cia-triad.svg" alt="CIA Triad" />
+<figcaption aria-hidden="true">CIA Triad</figcaption>
 </figure>
 <ol type="1">
-<li><strong>Confidentiality</strong>: Preventing people like me from doing something like this easily as someone could easily collect a large amount of real user IP addresses this way if there was no cache/proxy and no one could really stop us</li>
-<li><strong>Integrity</strong>: make sure it doesn’t change - it’s the same as when it was posted (although this doesn’t entirely line up as the image is cached when it’s loaded on the clients side and not when the actor posts it, it also occasionally updates it’s cache too)</li>
-<li><strong>Availability</strong>: Imagine the image linked to a small server in someone’s attic and it got posted in a large server. The image being posted there and that many users accessing the image at once with Discord open in the background could simply DDOS the host. Or simply, the original endpoint’s server may have slow internet</li>
+<li><strong>Confidentiality</strong>: Preventing people like me from
+doing something like this easily as someone could easily collect a large
+amount of real user IP addresses this way if there was no cache/proxy
+and no one could stop us</li>
+<li><strong>Integrity</strong>: make sure it doesn’t change - it’s the
+same as when it was posted (although this doesn’t entirely line up as
+the image is cached when it’s loaded on the client’s side and not when
+the actor posts it, it also occasionally updates it’s cache too)</li>
+<li><strong>Availability</strong>: Imagine the image linked to a small
+server in someone’s attic and it got posted in a large server. The image
+being posted there and many users accessing the image at once with
+Discord open in the background could simply DDOS the host. Or simply,
+the original endpoint’s server may have slow internet</li>
 </ol>
 <p>Probably some other reasons like:</p>
 <ol start="4" type="1">
-<li>Scanning the image for malicious content (malware, content that is against the TOS/Guidelines)</li>
-<li>Reducing their bandwidth impact on the host (related to point 3)</li>
+<li>Scanning the image for malicious content (malware, content that is
+against the TOS/Guidelines)</li>
+<li>Reducing their bandwidth impact on the host (related to point
+3)</li>
 </ol>
-<p>Additionally, nowadays it’s a lot harder to pull this off due to this pop-up: <img src="https://xsfs.xyz/assets/img/2023/discord-warning.png" alt="Discord showing a warning about the true URL of the image that was posted" /></p>
-<p>Especially considering the URL where this ‘resource’ is store, it’s very on the nose and as a normal user seeing this you may think twice about opening the image in browser. I don’t know if companies have been going this ‘zero trust’ route of external resources because of genuine concern for user safety or because they are just trying to mitigate user error (as it could be bad press if Discord doesn’t do enough to protect it’s users from themselves).</p>
-<h2 id="what-are-the-takeaways-from-this">What are the takeaways from this?</h2>
+<p>Additionally, nowadays it’s a lot harder to pull this off due to this
+pop-up: <img src="https://xsfs.xyz/assets/img/2023/discord-warning.png"
+alt="Discord showing a warning about the true URL of the image that was posted" /></p>
+<p>Especially considering the URL where this ‘resource’ is stored, it’s
+very on the nose and as a normal user seeing this you may think twice
+about opening the image in the browser. I don’t know if companies have
+been going this ‘zero trust’ route of external resources because of
+genuine concern for user safety or because they are just trying to
+mitigate user error (as it could be bad press if Discord doesn’t do
+enough to protect its users from themselves).</p>
+<h2 id="what-are-the-takeaways-from-this">What are the takeaways from
+this?</h2>
 <ul>
-<li>For end users: always be careful opening and downloading anything. You would be very surprised how easy it is to obfuscate things. Computers are getting better at protecting you from yourself, much to the dismay of power users who very much want their computers to get out of the way.</li>
-<li>For developers: TODO: This. See this message? Let the creator of the article know.</li>
+<li>For end users: always be careful opening and downloading anything.
+You would be very surprised how easy it is to obfuscate things.
+Computers are getting better at protecting you from yourself, much to
+the dismay of power users who very much want their computers to get out
+of the way.</li>
+<li>For developers: TODO: This. See this message? Let the creator of the
+article know.</li>
 </ul>
