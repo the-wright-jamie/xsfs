@@ -2,7 +2,7 @@
 
 Written by [the-wright-jamie](https://the-wright-jamie.dev/) on 29th March 2023
 
-<span class="material-symbols-rounded">labs</span> Part of the Experiment Write-Up series
+<span class="material-symbols-rounded">Science</span> Part of the Experiment Write-Up series
 
 ## Introduction
 
