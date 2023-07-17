@@ -1,4 +1,14 @@
 {
+  "write-ups": {
+    "years": [
+      {
+        "year": "2023",
+        "articles": [
+          { "link": "bait-and-switch", "title": "Discord Bait & Switch Troll" }
+        ]
+      }
+    ]
+  },
   "demos": {
     "years": [
       {
@@ -8,8 +18,7 @@
             "link": "query-vs-prepared",
             "title": "Queries vs Prepared Statements (ft. Postgres)"
           },
-          { "link": "stealing-cookies", "title": "Stealing Cookies" },
-          { "link": "bait-and-switch", "title": "Discord Bait & Switch Troll" }
+          { "link": "stealing-cookies", "title": "Stealing Cookies" }
         ]
       }
     ]

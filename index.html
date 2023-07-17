@@ -27,9 +27,31 @@
       <p>
         v1.0.0<br />
         eXtra Space For Stuff<br />
-        A place for demonstrations, thoughts and whatever else
+        A place for experiment write-ups, demonstrations, thoughts and whatever
+        else
       </p>
       <p>Run by <a href="https://the-wright-jamie.dev">the-wright-jamie</a></p>
+      <h1>ls ./write-ups</h1>
+      <div id="write-ups-target">
+        <div class="spinner-border text-success center" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <script id="write-ups-template" type="x-tmpl-mustache">
+        {{#write-ups}}
+          {{#years}}
+            <h2>{{year}}</h2>
+            <div class="row">
+              {{#articles}}
+                <div class="col">
+                  <a href="articles/{{year}}/{{link}}">{{title}}</a>
+                </div>
+              {{/articles}}
+            </div>
+            <br />
+          {{/years}}
+        {{/write-ups}}
+      </script>
       <h1>ls ./demos</h1>
       <div id="demos-target">
         <div class="spinner-border text-success center" role="status">
@@ -43,7 +65,7 @@
             <div class="row">
               {{#articles}}
                 <div class="col">
-                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                  <a href="articles/{{year}}/{{link}}">{{title}}</a>
                 </div>
               {{/articles}}
             </div>
@@ -64,7 +86,7 @@
             <div class="row">
               {{#articles}}
                 <div class="col">
-                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                  <a href="articles/{{year}}/{{link}}">{{title}}</a>
                 </div>
               {{/articles}}
             </div>
@@ -85,7 +107,7 @@
             <div class="row">
               {{#articles}}
                 <div class="col">
-                  <a href="article?title={{link}}&year={{year}}">{{title}}</a>
+                  <a href="articles/{{year}}/{{link}}">{{title}}</a>
                 </div>
               {{/articles}}
             </div>

@@ -83,3 +83,7 @@ img {
 .text-success {
   filter: drop-shadow(0 0 5px green);
 }
+
+span {
+  vertical-align: middle;
+}

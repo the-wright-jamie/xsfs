@@ -8,8 +8,12 @@ function render() {
       }
     })
     .then((data) => {
-      var template = document.getElementById("demos-template").innerHTML;
+      var template = document.getElementById("write-ups-template").innerHTML;
       var rendered = Mustache.render(template, data);
+      document.getElementById("write-ups-target").innerHTML = rendered;
+
+      template = document.getElementById("demos-template").innerHTML;
+      rendered = Mustache.render(template, data);
       document.getElementById("demos-target").innerHTML = rendered;
 
       template = document.getElementById("thoughts-template").innerHTML;

@@ -2,10 +2,14 @@
 
 Written by [the-wright-jamie](https://the-wright-jamie.dev/) on 29th March 2023
 
+<span class="material-symbols-rounded">labs</span> Part of the Experiment Write-Up series
+
 ## Introduction
 
-The following is a real image which is being retrieved from an external server:  
-![You've been trolled!](https://troll.the-wright-jamie.dev/troll.png)  
+The following is a real image which is being retrieved from an external server:
+
+[Server is currently down right now :(]
+
 Don't believe that this is your real IP address? <https://whatismyipaddress.com/>  
 Of course, if you're using a VPN, this won't be your IP address but an IP address belonging to the VPN
 
