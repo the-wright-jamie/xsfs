@@ -20,11 +20,13 @@ But when we send this image into a Discord server, we get this:
 
 Well, you can read the code [here](https://github.com/the-wright-jamie/Image-Troll-Server) and see for yourself, but the code doesn't reveal the full story - so keep reading to learn more about this.
 
-However, web servers don't have to serve static images, as long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able to render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
+Basically web servers don't have to serve static images, as long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able to render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
 
 ## What is the intended path for the victim?
 
-Due to the way Discord works, we need to present some bait to the user to get them to click "Open in browser" which will then display their IP address to them
+Due to the way Discord works, we need to present some bait to the user to get them to click "Open in browser" which will then display their IP address to them.
+
+So basically `User sees (bait) image` ➜ `User clicks Open In Browser` ➜ `User gets pranked`
 
 ## Why do we need to use bait?
 

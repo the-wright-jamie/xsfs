@@ -51,7 +51,7 @@ alt="Discord Image" /></p>
 href="https://github.com/the-wright-jamie/Image-Troll-Server">here</a>
 and see for yourself, but the code doesn’t reveal the full story - so
 keep reading to learn more about this.</p>
-<p>However, web servers don’t have to serve static images, as long as
+<p>Basically web servers don’t have to serve static images, as long as
 they return the data with a specified MIME type the browser (or
 application, i.e. in this case Discord) will be able to render whatever
 it was that was sent to it. That means we can use simple web server
@@ -61,7 +61,10 @@ image; and then return the data the client is expecting.</p>
 path for the victim?</h2>
 <p>Due to the way Discord works, we need to present some bait to the
 user to get them to click “Open in browser” which will then display
-their IP address to them</p>
+their IP address to them.</p>
+<p>So basically <code>User sees (bait) image</code> ➜
+<code>User clicks Open In Browser</code> ➜
+<code>User gets pranked</code></p>
 <h2 id="why-do-we-need-to-use-bait">Why do we need to use bait?</h2>
 <p>You may be thinking the reason we need to use bait is to get around
 moderators in servers immediately deleting the images, but actually,
