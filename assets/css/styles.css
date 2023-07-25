@@ -58,8 +58,15 @@ code {
   color: white;
 }
 
-img {
-  max-height: 15em;
+img:not(.footer-img) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+figcaption {
+  text-align: center;
 }
 
 .footer {
