@@ -1,6 +1,6 @@
 # Bait and Switching Discord Users
 
-Written by [the-wright-jamie](https://the-wright-jamie.dev/) on 29th March 2023
+Written by [the-wright-jamie](https://the-wright-jamie.dev/) on 29th March 2023, updated 25th July 2023
 
 <span class="material-symbols-rounded">Science</span> Part of the Experiment Write-Up series
 
@@ -20,13 +20,13 @@ But when we send this image into a Discord server, we get this:
 
 Well, you can read the code [here](https://github.com/the-wright-jamie/Image-Troll-Server) and see for yourself, but the code doesn't reveal the full story - so keep reading to learn more about this.
 
-Basically web servers don't have to serve static images, as long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able to render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
+Basically web servers don't have to serve static images. As long as they return the data with a specified MIME type the browser (or application, i.e. in this case Discord) will be able to render whatever it was that was sent to it. That means we can use simple web server frameworks, like NodeJS + Express, to interpret a request; modify an image; and then return the data the client is expecting.
 
 ## What is the intended path for the victim?
 
-Due to the way Discord works, we need to present some bait to the user to get them to click "Open in browser" which will then display their IP address to them.
+Due to the way Discord works, we need to present some bait to the user to get them to click to middle click the image (if they are viewing this on desktop), or "Open in browser" (if they on any other device). This will redirect them to a new tab in their browser which will then display their IP address to them (which you saw above).
 
-So basically `User sees (bait) image` ➜ `User clicks Open In Browser` ➜ `User gets pranked`
+So basically `User sees (bait) image` ➜ `User opens in browser` ➜ `User gets pranked`
 
 ## Why do we need to use bait?
 
@@ -39,21 +39,21 @@ The long answer: to understand why we need bait, we need to understand how Disco
 3. The crawler sees that it's an image, and hands it off to the caching server (`{undetermined-ip-address}.bc.googleusercontent.com`)
 4. The caching server reads the image
 5. The image is saved in the background in chat as linking to something like `https://images-ext-1.discordapp.net/external/{some-encoding}/{link-to-original-image}`
-6. That replacement cache link is what is displayed to the user
+6. That replacement cache image is what is displayed to the user
 
-Hopefully, you can see where the issue is coming from here: step 5.
+Hopefully, you can see where the issue is coming from here - the cached image is what's displayed, not the original image.
 
-If the caching server retrieves the image on the user's behalf, the IP address that's going to get displayed is the caching server's IP and not the target's IP address and as a result killing the punchline 🫤
+If the caching server retrieves the image on the user's behalf, the IP address that's going to get displayed is the caching server's IP and not the target's IP address and as a result killing the punchline 🫤. In a way, it would work for a brief moment - someone seeing it might get freaked out until they actually check on Google what their IP address is, but actually presenting the user's IP address to them is a lot more effective.
 
-So, instead, we need to detect if a data centre is accessing our image and if it is, give the data centre the bait to display instead as this is what will be displayed to the user in Discord. And remember, as a result of this, the end goal is to get the user to click "Open in Browser" in Discord so that it will take them there and the browser will access the server directly so we can lift the user's actual IP address.
+So, instead, we need to detect if a data centre is accessing our image and if it is, give the data centre the bait to display instead as this is what will be displayed to the user in Discord. And remember, the end goal is to get the user to open the image in the browser so we can lift the user's actual IP address.
 
-TODO: Create a diagram. Do you see this message? Get in touch with the creator of the article.
+![Connections Diagram](https://xsfs.xyz/assets/img/2023/discord-bait-graphic.png)
 
 ## Why is Discord like this?
 
 It's anyone's guess why Discord does it like this. However, we could probably relate it to the Information Security CIA Triad:
 
-![CIA Triad](https://xsfs.xyz/assets/img/cia-triad.svg)
+![CIA Triad](https://xsfs.xyz/assets/img/2023/cia-triad.svg)
 
 1. **Confidentiality**: Preventing people like me from doing something like this easily as someone could easily collect a large amount of real user IP addresses this way if there was no cache/proxy and no one could stop us
 2. **Integrity**: make sure it doesn't change - it's the same as when it was posted (although this doesn't entirely line up as the image is cached when it's loaded on the client's side and not when the actor posts it, it also occasionally updates it's cache too)
@@ -64,7 +64,8 @@ Probably some other reasons like:
 4. Scanning the image for malicious content (malware, content that is against the TOS/Guidelines)
 5. Reducing their bandwidth impact on the host (related to point 3)
 
-Additionally, nowadays it's a lot harder to pull this off due to this pop-up:
-![Discord showing a warning about the true URL of the image that was posted](https://xsfs.xyz/assets/img/2023/discord-warning.png)
+## Conclusion
 
-Especially considering the URL where this 'resource' is stored, it's very on the nose and as a normal user seeing this you may think twice about opening the image in the browser. I don't know if companies have been going this 'zero trust' route of external resources because of genuine concern for user safety or because they are just trying to mitigate user error (as it could be bad press if Discord doesn't do enough to protect its users from themselves). Either way, it's good to see this warning - imagine the havoc this could cause!
+In this article, we have learnt how people are able to pull off these kind of pranks. The process used by the server to figure out if a cache server is accessing the image is somewhat rudimentary, but it works for the purposes we are using here. It could be improved for other services, for example GitHub uses a similar system - so if you wanted to use this broadly, you'd have to change it to have a better detection of caching servers. In reality, you'd have to know what websites a services use cache in this way.
+
+This was an interesting dip into how Discord handles images, and I hope you were also able to learn something new from this article. I encourage you to go out and explore for yourself, just don't do something that could get you in trouble!
